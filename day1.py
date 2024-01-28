@@ -26,9 +26,6 @@
 # To play, please identify yourself via one of these services:
 print("adventOfCode2023-day1")
 
-inputValue = "a1b2c3d4e5f" # temp value
-inputValue = "abc3def" # temp value
-
 def getNumbersFromValue(text):
 	numbers = []
 	for symbol in text:
@@ -37,15 +34,24 @@ def getNumbersFromValue(text):
 	return numbers
 
 def getTwoNumbersFromNumbers(numbers):
-	return f"{numbers[0]}{numbers[-1]}"
+	if len(numbers)==0: 
+		return 0
+	return int(f"{numbers[0]}{numbers[-1]}")
 
-def getValuesFromFile(path = "day1_input.txt"):
+def getValuesFromFile(path):
 	f = open(path,"r")
 	contant = f.read()	
 	f.close()
 	return contant
 
-print(getValuesFromFile())
-numbersFrominputValue = getNumbersFromValue(inputValue)
-calibrationValue = getTwoNumbersFromNumbers(numbersFrominputValue)
+def getcalibrationValuesSumFromfile(path = "day1_input.txt"):
+	inportedValues = getValuesFromFile(path)
+	calibrationNumbers = []
+	for values in inportedValues:
+		valueNumbers = getNumbersFromValue(values)
+		calibrationValue = getTwoNumbersFromNumbers(valueNumbers)
+		calibrationNumbers.append(calibrationValue)
+	return sum(calibrationNumbers)
+
+print(getcalibrationValuesSumFromfile()) 
 
