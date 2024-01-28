@@ -26,16 +26,19 @@
 # To play, please identify yourself via one of these services:
 print("adventOfCode2023-day1")
 
-import re
-
 calibrationValue = "a1b2c3d4e5f" # temp value
+calibrationValue = "abc3def" # temp value
 
 def getNumbersFromValue(calibrationValue):
 	numbers = []
 	for symbol in calibrationValue:
-		print(type(symbol))
 		if symbol.isdigit():
 			numbers.append(symbol)
 	return numbers
 
-print(getNumbersFromValue(calibrationValue))
+def getTwoNumbersFromNumbers(numbers):
+	return f"{numbers[0]}{numbers[-1]}"
+
+numbersFromCalibrationValue = getNumbersFromValue(calibrationValue)
+print(getTwoNumbersFromNumbers(numbersFromCalibrationValue))
+
