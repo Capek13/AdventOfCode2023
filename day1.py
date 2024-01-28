@@ -34,21 +34,19 @@ def getNumbersFromValue(text):
 	return numbers
 
 def getTwoNumbersFromNumbers(numbers):
-	if len(numbers)==0: 
-		return 0
 	return int(f"{numbers[0]}{numbers[-1]}")
 
 def getValuesFromFile(path):
 	f = open(path,"r")
-	contant = f.read()	
+	contant = f.read().splitlines()
 	f.close()
 	return contant
 
 def getcalibrationValuesSumFromfile(path = "day1_input.txt"):
 	inportedValues = getValuesFromFile(path)
 	calibrationNumbers = []
-	for values in inportedValues:
-		valueNumbers = getNumbersFromValue(values)
+	for value in inportedValues:
+		valueNumbers = getNumbersFromValue(value)
 		calibrationValue = getTwoNumbersFromNumbers(valueNumbers)
 		calibrationNumbers.append(calibrationValue)
 	return sum(calibrationNumbers)
