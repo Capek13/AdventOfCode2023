@@ -1,4 +1,4 @@
-# adventofcode.com/2023/day/
+# adventofcode.com/2023/day1/
 
 # --- Day 1: Trebuchet?! ---
 # Something is wrong with global snow production, and you've been selected to take a look. The Elves have even given you a map; on it, they've used stars to mark the top fifty locations that are likely to be having problems.
@@ -35,7 +35,7 @@ def getNumbersFromValue(text):
 def getTwoNumbersFromNumbers(numbers):
 	return int(f"{numbers[0]}{numbers[-1]}")
 
-def getValuesFromFile(path):
+def getValuesFromFile(path = "day1_input.txt"):
 	f = open(path,"r")
 	contant = f.read().splitlines()
 	f.close()
