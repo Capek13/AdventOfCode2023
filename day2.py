@@ -15,10 +15,32 @@
 
 # What is the sum of all of the calibration values?
 
-print("adventOfCode2023-day2")
-
-
 import day1
-# one, two, three, four, five, six, seven, eight, and nine
 
-# day1.getcalibrationValuesSumFromfile()
+def getConvertedNumbersInValue(values):
+	newValues = []
+	textNumbers = {'one':'1','two':'2','three':'3','four':'4','five':'5','six':'6','seven':'7','eight':'8','nine':'9'}
+	for singleValue in values:
+		updateValue = singleValue
+		for number in textNumbers.keys():
+			print(textNumbers[number])
+			updateValue.replace(number, textNumbers[number])
+		newValues.append(updateValue)
+	return newValues
+
+def setValuesToFile(content, path):
+	f = open(path,"w")
+	for line in content:
+		f.write(line + '\n')
+	f.close()
+
+# one, two, three, four, five, six, seven, eight, nine
+
+
+if __name__ == "__main__":
+	print("adventOfCode2023-day2")
+
+	inportedValues = day1.getValuesFromFile()
+	newValues = getConvertedNumbersInValue(inportedValues)
+	setValuesToFile(newValues, "day2_input.txt")
+	
