@@ -24,8 +24,7 @@
 # Consider your entire calibration document. What is the sum of all of the calibration values?
 
 # To play, please identify yourself via one of these services:
-print("adventOfCode2023-day1")
-
+	
 def getNumbersFromValue(text):
 	numbers = []
 	for symbol in text:
@@ -51,5 +50,7 @@ def getcalibrationValuesSumFromfile(path = "day1_input.txt"):
 		calibrationNumbers.append(calibrationValue)
 	return sum(calibrationNumbers)
 
-print(getcalibrationValuesSumFromfile()) 
+if __name__ == "__main__":
+	print("adventOfCode2023-day1")
+	print(getcalibrationValuesSumFromfile()) 
 
