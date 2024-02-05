@@ -22,9 +22,9 @@ def getConvertedNumbersInValue(values):
 	textNumbers = {'one':'1','two':'2','three':'3','four':'4','five':'5','six':'6','seven':'7','eight':'8','nine':'9'}
 	for singleValue in values:
 		updateValue = singleValue
+		# compare index of values and change only solo, first or last
 		for number in textNumbers.keys():
-			print(textNumbers[number])
-			updateValue.replace(number, textNumbers[number])
+			updateValue = updateValue.replace(number, textNumbers[number])
 		newValues.append(updateValue)
 	return newValues
 
@@ -40,7 +40,7 @@ def setValuesToFile(content, path):
 if __name__ == "__main__":
 	print("adventOfCode2023-day2")
 
-	inportedValues = day1.getValuesFromFile()
+	inportedValues = day1.getValuesFromFile("day2_input.txt")
 	newValues = getConvertedNumbersInValue(inportedValues)
 	setValuesToFile(newValues, "day2_input.txt")
-	
+	print(day1.getcalibrationValuesSumFromfile("day2_input.txt")) 
