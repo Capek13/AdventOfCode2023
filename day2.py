@@ -48,6 +48,9 @@ def GetConvertedNumbersInValue(values):
 		else:
 			newValues.append(singleValue)
 	return newValues
+# muze byt problem v prepisovani posledn9ho cisla prvnim cilsem
+# dalsi krok najit vsechny cisla a pokud je text cislo driv nez int tak ho prepsat a pokud je posledni cislo text tak prepsat 
+# tedy najit prvni int a helda pred nim a naj9t poslendi in a hledat po nem
 
 def SetValuesToFile(content, path):
 	f = open(path,"w")
