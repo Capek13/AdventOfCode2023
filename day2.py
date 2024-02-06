@@ -22,25 +22,31 @@ def GetSortedNumbersById(numbers, indexs):
 	sortedNubers = []
 	for i in sortedIndexs:
 		sortedNubers.append(numbers[indexs.index(i)])
-	return sortedNubers
+	return sortedNubers, sortedIndexs
 
 def GetConvertedNumbersInValue(values):
 	newValues = []
 	textNumbers = {'one':'1','two':'2','three':'3','four':'4','five':'5','six':'6','seven':'7','eight':'8','nine':'9'}
 	for singleValue in values:
-		updateValue = singleValue
 		findedNumbers = []
 		findedNumbersIndexs = []
 		for number in textNumbers.keys():
-			index = updateValue.find(number)
+			index = singleValue.find(number)
 			if index > -1 :
 				findedNumbers.append(number)
 				findedNumbersIndexs.append(index)
-		if len(findedNumbers) > 0:
-			sortedNubers = GetSortedNumbersById(findedNumbers, findedNumbersIndexs)
-			for number in sortedNubers:
-				updateValue = updateValue.replace(number, textNumbers[number])
-			newValues.append(updateValue)
+		sortedNubers, sortedIndexs = GetSortedNumbersById(findedNumbers, findedNumbersIndexs)
+		if len(findedNumbers) > 1:
+			separedValuePart1 = singleValue[:sortedIndexs[0]] 
+			separedValuePart2 = singleValue[sortedIndexs[0] + len(sortedNubers[0]):sortedIndexs[-1]] 
+			separedValuePart3 = singleValue[sortedIndexs[-1] + len(sortedNubers[-1]):] 
+			joinedValue = separedValuePart1 + textNumbers[sortedNubers[0]] + separedValuePart2 + textNumbers[sortedNubers[-1]] + separedValuePart3
+			newValues.append(joinedValue)
+		elif len(findedNumbers) == 1:
+			joinedValue = singleValue[:sortedIndexs[0]]  + textNumbers[sortedNubers[0]] + singleValue[sortedIndexs[0] + len(sortedNubers[0]):]
+			newValues.append(joinedValue)
+		else:
+			newValues.append(singleValue)
 	return newValues
 
 def SetValuesToFile(content, path):
@@ -48,9 +54,6 @@ def SetValuesToFile(content, path):
 	for line in content:
 		f.write(line + '\n')
 	f.close()
-
-# one, two, three, four, five, six, seven, eight, nine
-
 
 if __name__ == "__main__":
 	print("adventOfCode2023-day2")
