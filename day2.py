@@ -17,23 +17,30 @@
 
 import day1
 
-def 
+def GetSortedNumbersById(numbers, indexs):
+	sortedIndexs = sorted(indexs)
+	sortedNubers = []
+	for i in sortedIndexs:
+		sortedNubers.append(numbers[indexs.index(i)])
+	return sortedNubers
 
 def GetConvertedNumbersInValue(values):
 	newValues = []
 	textNumbers = {'one':'1','two':'2','three':'3','four':'4','five':'5','six':'6','seven':'7','eight':'8','nine':'9'}
 	for singleValue in values:
 		updateValue = singleValue
-		# compare index of values and change only solo, first or last
-		numbersInTextWithId = []
+		findedNumbers = []
+		findedNumbersIndexs = []
 		for number in textNumbers.keys():
 			index = updateValue.find(number)
 			if index > -1 :
-				numbersInTextWithId.append([number , index] )
-		#sortByIndex
-		for number in textNumbers.keys():
-			updateValue = updateValue.replace(number, textNumbers[number])
-		newValues.append(updateValue)
+				findedNumbers.append(number)
+				findedNumbersIndexs.append(index)
+		if len(findedNumbers) > 0:
+			sortedNubers = GetSortedNumbersById(findedNumbers, findedNumbersIndexs)
+			for number in sortedNubers:
+				updateValue = updateValue.replace(number, textNumbers[number])
+			newValues.append(updateValue)
 	return newValues
 
 def SetValuesToFile(content, path):
@@ -48,7 +55,7 @@ def SetValuesToFile(content, path):
 if __name__ == "__main__":
 	print("adventOfCode2023-day2")
 
-	inportedValues = day1.GetValuesFromFile("day2_input.txt")
+	inportedValues = day1.GetValuesFromFile("day1_input.txt")
 	newValues = GetConvertedNumbersInValue(inportedValues)
 	SetValuesToFile(newValues, "day2_input.txt")
 	print(day1.GetcalibrationValuesSumFromfile("day2_input.txt")) 
