@@ -25,32 +25,32 @@
 
 # To play, please identify yourself via one of these services:
 	
-def getNumbersFromValue(text):
+def GetNumbersFromValue(text):
 	numbers = []
 	for symbol in text:
 		if symbol.isdigit():
 			numbers.append(symbol)
 	return numbers
 
-def getTwoNumbersFromNumbers(numbers):
+def GetTwoNumbersFromNumbers(numbers):
 	return int(f"{numbers[0]}{numbers[-1]}")
 
-def getValuesFromFile(path = "day1_input.txt"):
+def GetValuesFromFile(path = "day1_input.txt"):
 	f = open(path,"r")
 	contant = f.read().splitlines()
 	f.close()
 	return contant
 
-def getcalibrationValuesSumFromfile(path = "day1_input.txt"):
-	inportedValues = getValuesFromFile(path)
+def GetcalibrationValuesSumFromfile(path = "day1_input.txt"):
+	inportedValues = GetValuesFromFile(path)
 	calibrationNumbers = []
 	for value in inportedValues:
-		valueNumbers = getNumbersFromValue(value)
-		calibrationValue = getTwoNumbersFromNumbers(valueNumbers)
+		valueNumbers = GetNumbersFromValue(value)
+		calibrationValue = GetTwoNumbersFromNumbers(valueNumbers)
 		calibrationNumbers.append(calibrationValue)
 	return sum(calibrationNumbers)
 
 if __name__ == "__main__":
 	print("adventOfCode2023-day1")
-	print(getcalibrationValuesSumFromfile()) 
+	print(GetcalibrationValuesSumFromfile()) 
 
