@@ -41,16 +41,13 @@ def GetConvertedNumbersInValue(values):
 		
 		for number in textNumbers.keys():
 			newValue = newValue.replace(number, textNumbers[number])
-		newValues.append(newValue)
+		newValues.append(int(newValue))
 	return newValues
-# muze byt problem v prepisovani posledn9ho cisla prvnim cilsem
-# dalsi krok najit vsechny cisla a pokud je text cislo driv nez int tak ho prepsat a pokud je posledni cislo text tak prepsat 
-# tedy najit prvni int a helda pred nim a naj9t poslendi in a hledat po nem
 
 def SetValuesToFile(content, path):
 	f = open(path,"w")
 	for line in content:
-		f.write(line + '\n')
+		f.write(f"{line}" + '\n')
 	f.close()
 
 if __name__ == "__main__":
@@ -59,4 +56,5 @@ if __name__ == "__main__":
 	inportedValues = day1.GetValuesFromFile("day1_input.txt")
 	newValues = GetConvertedNumbersInValue(inportedValues)
 	SetValuesToFile(newValues, "day2_input.txt")
-	print(day1.GetcalibrationValuesSumFromfile("day2_input.txt")) 
+	# print(day1.GetcalibrationValuesSumFromfile("day2_input.txt")) 
+	print(sum(newValues))
