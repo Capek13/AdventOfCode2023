@@ -30,23 +30,18 @@ def GetConvertedNumbersInValue(values):
 	for singleValue in values:
 		findedNumbers = []
 		findedNumbersIndexs = []
-		for number in textNumbers.keys():
+		for number in (list(textNumbers.keys()) + ['1','2','3','4','5','6','7','8','9']):
 			index = singleValue.find(number)
 			if index > -1 :
 				findedNumbers.append(number)
 				findedNumbersIndexs.append(index)
 		sortedNubers, sortedIndexs = GetSortedNumbersById(findedNumbers, findedNumbersIndexs)
-		if len(findedNumbers) > 1:
-			separedValuePart1 = singleValue[:sortedIndexs[0]] 
-			separedValuePart2 = singleValue[sortedIndexs[0] + len(sortedNubers[0]):sortedIndexs[-1]] 
-			separedValuePart3 = singleValue[sortedIndexs[-1] + len(sortedNubers[-1]):] 
-			joinedValue = separedValuePart1 + textNumbers[sortedNubers[0]] + separedValuePart2 + textNumbers[sortedNubers[-1]] + separedValuePart3
-			newValues.append(joinedValue)
-		elif len(findedNumbers) == 1:
-			joinedValue = singleValue[:sortedIndexs[0]]  + textNumbers[sortedNubers[0]] + singleValue[sortedIndexs[0] + len(sortedNubers[0]):]
-			newValues.append(joinedValue)
-		else:
-			newValues.append(singleValue)
+
+		newValue = sortedNubers[0] + sortedNubers[-1]
+		
+		for number in textNumbers.keys():
+			newValue = newValue.replace(number, textNumbers[number])
+		newValues.append(newValue)
 	return newValues
 # muze byt problem v prepisovani posledn9ho cisla prvnim cilsem
 # dalsi krok najit vsechny cisla a pokud je text cislo driv nez int tak ho prepsat a pokud je posledni cislo text tak prepsat 
