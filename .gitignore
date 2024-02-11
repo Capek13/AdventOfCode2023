@@ -1,0 +1,7 @@
+#ignore txt files
+*.txt
+
+# other files
+test.py
+__pycache__/
+.DS_Store
