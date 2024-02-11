@@ -35,10 +35,17 @@ def GetConvertedNumbersInValue(values):
 			if index > -1 :
 				findedNumbers.append(number)
 				findedNumbersIndexs.append(index)
+
+		# PROBLEM : is finding only one example in value
+		print(findedNumbers,' ; ',singleValue)
+
 		sortedNubers, sortedIndexs = GetSortedNumbersById(findedNumbers, findedNumbersIndexs)
+		if len(sortedIndexs)<= 2:
+			endOfFirstNumber = sortedIndexs[0] + len(sortedNubers[0])
+			if sortedIndexs[-1] < endOfFirstNumber:
+				sortedNubers[-1]=sortedNubers[0]
 
 		newValue = sortedNubers[0] + sortedNubers[-1]
-		
 		for number in textNumbers.keys():
 			newValue = newValue.replace(number, textNumbers[number])
 		newValues.append(int(newValue))
@@ -51,10 +58,12 @@ def SetValuesToFile(content, path):
 	f.close()
 
 if __name__ == "__main__":
-	print("adventOfCode2023-day2")
+	print("adventOfCode2023-day1-part2")
 
-	inportedValues = day1.GetValuesFromFile("day1_input.txt")
+	inportedValues = day1.GetValuesFromFile("day2_input.txt")
 	newValues = GetConvertedNumbersInValue(inportedValues)
-	SetValuesToFile(newValues, "day2_input.txt")
+	SetValuesToFile(newValues , "day2_output1.txt")
 	# print(day1.GetcalibrationValuesSumFromfile("day2_input.txt")) 
 	print(sum(newValues))
+
+	
