@@ -31,15 +31,18 @@ def GetConvertedNumbersInValue(values):
 		findedNumbers = []
 		findedNumbersIndexs = []
 		for number in (list(textNumbers.keys()) + ['1','2','3','4','5','6','7','8','9']):
-			index = singleValue.find(number)
-			if index > -1 :
-				findedNumbers.append(number)
-				findedNumbersIndexs.append(index)
-
-		# PROBLEM : is finding only one example in value
-		print(findedNumbers,' ; ',singleValue)
-
+			index = 0
+			while singleValue.find(number, index) > -1:
+				index = singleValue.find(number, index)
+				if index > -1 :
+					findedNumbers.append(number)
+					findedNumbersIndexs.append(index)
+					index += len(number)
 		sortedNubers, sortedIndexs = GetSortedNumbersById(findedNumbers, findedNumbersIndexs)
+		
+		# exist problem with share symbols
+		print(sortedNubers,' ; ',singleValue)
+
 		if len(sortedIndexs)<= 2:
 			endOfFirstNumber = sortedIndexs[0] + len(sortedNubers[0])
 			if sortedIndexs[-1] < endOfFirstNumber:
