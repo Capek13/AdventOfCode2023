@@ -24,6 +24,15 @@ def GetSortedNumbersById(numbers, indexs):
 		sortedNubers.append(numbers[indexs.index(i)])
 	return sortedNubers, sortedIndexs
 
+def GetAndRemoveNumbersSharingAlphabets(numbers, indexs):
+	removeThisIndexs = []
+	for i in range(len(numbers)-1):
+		if (indexs[i] + len(numbers[i])) > indexs[i+1]:
+			del numbers[i+1]
+			del indexs[i+1]
+			return GetAndRemoveNumbersSharingAlphabets(numbers, indexs)
+	return numbers, indexs
+
 def GetConvertedNumbersInValue(values):
 	newValues = []
 	textNumbers = {'one':'1','two':'2','three':'3','four':'4','five':'5','six':'6','seven':'7','eight':'8','nine':'9'}
@@ -39,9 +48,8 @@ def GetConvertedNumbersInValue(values):
 					findedNumbersIndexs.append(index)
 					index += len(number)
 		sortedNubers, sortedIndexs = GetSortedNumbersById(findedNumbers, findedNumbersIndexs)
-		
-		# exist problem with share symbols
-		print(sortedNubers,' ; ',singleValue)
+		# sortedNubers, sortedIndexs = GetAndRemoveNumbersSharingAlphabets(sortedNubers, sortedIndexs)
+		# print(sortedNubers,' ; ',singleValue)
 
 		if len(sortedIndexs)<= 2:
 			endOfFirstNumber = sortedIndexs[0] + len(sortedNubers[0])
