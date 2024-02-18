@@ -45,9 +45,17 @@ def GedIdIsLineInLimit(line):
 						return False
 	return gameId
 
+def GetIdsOnly(list):
+	newList = []
+	for value in list:
+		if value != False:
+			newList.append(value)
+	return newList
 
 if __name__ == "__main__":
 	print("adventOfCode2023-day2")
 	inportedValues = day1.GetValuesFromFile("day2_input.txt")
-	boolResults = map(GedIdIsLineInLimit,inportedValues)
-	print(list(boolResults))
+	ids = list(map(GedIdIsLineInLimit,inportedValues))
+	idsOnly = GetIdsOnly(ids)
+	print(sum(idsOnly))
+
